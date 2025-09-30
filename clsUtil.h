@@ -4,7 +4,6 @@
 #include <fstream>
 #include <vector>
 #include "clsDate.h"
-#include "clsString.h"
 using namespace std;
 
 

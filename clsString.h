@@ -21,29 +21,6 @@ using namespace std;
 // get_property() -> cout << identifier;
 
 
-class clsInterface
-{
-	virtual short GetStringLength() = 0;
-	virtual void PrintEachWord() = 0;
-	virtual bool IsNumberInRange(int Number, int From, int To) = 0;
-	virtual short GetASCII(char Letter) = 0;
-	virtual char GetLetterByASCII(short ASCIIValue) = 0;
-	virtual void GenerateRangeOfLetters(char StartLetter, char EndLetter) = 0;
-	virtual bool IsSmallLetter(char Letter) = 0;
-	virtual bool IsCapitalLetter(char Letter) = 0;
-	virtual bool IsPunctLetter(char Letter) = 0;
-	virtual char Convert_Small_LetterToCapital(char SmallLetter) = 0;
-	virtual char Convert_Capital_LetterToSmall(char CapitalLetter) = 0;
-	/*virtual string MyLowerAllString() = 0;
-	virtual string MyUpperAllString() = 0;
-	virtual string MyRemoveSpecificLetter(string Text, char LetterToRemove) = 0;*/
-	virtual string My_substr(string Text, short StartIndex, short NumberOfLetters) = 0;
-	virtual string My_clear(string Text) = 0;
-	virtual short ConvertDigitLetterToDigit(char DigitLetter) = 0;
-	virtual int SumDigitsByRecursion(int Number) = 0;
-};
-
-
 class clsString : public clsInterface
 {
 private:

@@ -19,8 +19,8 @@ public:
     }
 
     // Numbers Algorithms
-
-    static float ReadNumber(string Message)
+	
+	 static float ReadNumber(string Message)
     {
         float Number = 0;
         cout << Message;
@@ -37,6 +37,81 @@ public:
             cin >> Number;
         } while (Number <= 0);
         return Number;
+    }
+
+    static float ReadNumberInRange(string InputMessage, int From, int To)
+    {
+        float Number = 0;
+        bool ValidNumber;
+        do
+        {
+            cout << InputMessage;
+            cin >> Number;
+            ValidNumber = IsNumberInRange(Number, From, To);
+        } while (!ValidNumber);
+        return Number;
+    }
+
+    static bool IsIntegerNumber(float Number)
+    {
+        return Number == round(Number);
+        // only one case is true: number is integer -> 2 or with fraction 0 -> 2.0
+    }
+
+    static bool IsDecimalNumber(float Number)
+    {
+        return Number != round(Number);
+        /*
+        2 != round(2) false -> 2 == 2
+        2.2 != round(2.2) true -> 2.2 != 2
+        2.5 != round(2.5) true -> 2.5 != 3
+        */
+    }
+
+    static bool IsPositiveNumber(short Number)
+    {
+        return Number > 0;
+    }
+
+    static bool IsNegativeNumber(short Number)
+    {
+        return Number < 0;
+    }
+
+    static bool IsZero(short Number)
+    {
+        return Number == 0;
+    }
+
+    static bool IsOddNumber(short Number)
+    {
+        return Number % 2 != 0;
+    }
+
+    static bool IsEvenNumber(short Number)
+    {
+        return Number % 2 == 0;
+    }
+
+    static bool IsPerfectNumber(int Number)
+    {
+        int Sum = 0;
+        for (int i = 1; i < Number; i++)
+        {
+            if (Number % i == 0)
+                Sum += i;
+        }
+        return Number == Sum;
+    }
+
+    static bool IsPalindromeNumber(int Number)
+    {
+        return Number == ReverseNumber(Number);
+    }
+
+    static bool IsNumberInRange(int Number, int From, int To)
+    {
+        return (Number >= From && Number <= To);
     }
 
     static void GenerateBasicMultiplicationTables()

@@ -126,4 +126,12 @@ public:
 	{
 		return clsDate::IsValidDate(Date);
 	}
+	
+	static string ReadString(string Message)
+	{
+		string Text;
+		cout << Message;
+		getline(cin >> ws, Text);
+		return Text;
+	}
 };

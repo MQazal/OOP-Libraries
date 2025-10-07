@@ -335,13 +335,23 @@ public:
     }
 
     // Boolean Algorithms
-
-    static bool AskToPerformOperation(string Message)
+	
+	static char AskToPerformOperation(string Message)
     {
-        bool Sure;
-        cout << '\n' << Message;
-        cin >> Sure;
-        return Sure;
+        char Perform;
+        cout << Message;
+        cin >> Perform;
+        return Perform;
+    }
+	
+    static bool AreLettersEqual(char Letter1, char Letter2)
+    {
+        return GetASCII(Letter1) == GetASCII(Letter2);
+    }
+	
+    static bool CharToBoolean(char UserAnswer, char WhatToExpect, char AnotherExpectation = ' ')
+    {
+        return AreLettersEqual(UserAnswer, WhatToExpect) || AreLettersEqual(UserAnswer, AnotherExpectation);
     }
 
     static bool StringToBoolean(string UserAnswer, string WhatToExpect)

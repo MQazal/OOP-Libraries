@@ -521,23 +521,91 @@ public:
             */
         }
     }
-
-    static short FindNumberPositionInArray(int Array[100], short Length, short NumberToSearch)
+	
+	static short FindFirstPositionInArray(int Array[100], int Length, int NumberToSearch)
+{
+    for (int i = 0; i <= Length - 1; i++)
     {
-        for (int i = 0; i <= Length - 1; i++)
-        {
-            if (Array[i] == NumberToSearch)
-            {
-                return i;
-            }
-        }
-        return -1;
+        if (Array[i] == NumberToSearch)
+            return i;
     }
+    return -1;
+}
 
-    static bool IsNumberInArray(int Array[100], int Length, int NumberToSearch)
+static short FindFirstPositionInArray(double Array[100], int Length, double NumberToSearch)
+{
+    for (int i = 0; i <= Length - 1; i++)
     {
-        return FindNumberPositionInArray(Array, Length, NumberToSearch) != -1;
+        if (Array[i] == NumberToSearch)
+            return i;
     }
+    return -1;
+}
+
+static short FindFirstPositionInArray(string Array[100], int Length, string WordToSearch)
+{
+    for (int i = 0; i <= Length - 1; i++)
+    {
+        if (Array[i] == WordToSearch)
+            return i;
+    }
+    return -1;
+}
+
+static short FindFirstPositionInArray(char Array[100], int Length, char LetterToSearch)
+{
+    for (int i = 0; i <= Length - 1; i++)
+    {
+        if (Array[i] == LetterToSearch)
+            return i;
+    }
+    return -1;
+}
+
+static bool IsNumberInArray(int Array[100], int Length, int NumberToSearch)
+{
+    return FindFirstPositionInArray(Array, Length, NumberToSearch) != -1;
+}
+
+static short FindLastPositionInArray(int Array[100], int Length, int NumberToSearch)
+{
+    for (short i = Length - 1; i >= 0; i--)
+    {
+        if (Array[i] == NumberToSearch)
+            return i;
+    }
+    return -1;
+}
+
+static short FindLastPositionInArray(double Array[100], int Length, double NumberToSearch)
+{
+    for (short i = Length - 1; i >= 0; i--)
+    {
+        if (Array[i] == NumberToSearch)
+            return i;
+    }
+    return -1;
+}
+
+static short FindLastPositionInArray(string Array[100], int Length, string WordToSearch)
+{
+    for (short i = Length - 1; i >= 0; i--)
+    {
+        if (Array[i] == WordToSearch)
+            return i;
+    }
+    return -1;
+}
+
+static short FindLastPositionInArray(char Array[100], int Length, char LetterToSearch)
+{
+    for (short i = Length - 1; i >= 0; i--)
+    {
+        if (Array[i] == LetterToSearch)
+            return i;
+    }
+    return -1;
+}
 
     static void AddElementToArray(int Number, int Array[], int& ArrayLength)
     {

@@ -8,7 +8,6 @@ using namespace std;
 
 // Utility Library - 30/9/2025 - Course#11 - Developer: Mr.Key47
 
-
 class clsUtil
 {
 public:
@@ -21,8 +20,8 @@ public:
     }
 
     // Numbers Algorithms
-	
-	 static float ReadNumber(string Message)
+
+    static float ReadNumber(string Message)
     {
         float Number = 0;
         cout << Message;
@@ -116,6 +115,11 @@ public:
         return (Number >= From && Number <= To);
     }
 
+    static bool IsNumber1GraterThanNumber2(int Number1, int Number2)
+    {
+        return Number1 > Number2;
+    }
+
     static void GenerateBasicMultiplicationTables()
     {
         for (short i = 1; i <= 10; i++)
@@ -138,11 +142,6 @@ public:
         }
     }
 
-    static bool IsNumberInRange(int Number, int From, int To)
-    {
-        return (Number >= From && Number <= To);
-    }
-
     static void Swap(int& Num1, int& Num2)
     {
         int Temp = Num1;
@@ -159,19 +158,7 @@ public:
 
     static void Swap(clsDate Date1, clsDate Date2)
     {
-        //Swap(clsDate::DateToString(Date1), clsDate::DateToString(Date2));
         clsDate::SwapDates(Date1, Date2);
-    }
-
-    static bool IsPerfectNumber(int Number)
-    {
-        int Sum = 0;
-        for (int i = 1; i < Number; i++)
-        {
-            if (Number % i == 0)
-                Sum += i;
-        }
-        return Number == Sum;
     }
     
     static void PrintReversedDigits(int Number)
@@ -237,9 +224,15 @@ public:
         }
     }
 
-    static bool IsPalindromeNumber(int Number)
+    static short SumDigitsASCII(string Text)
     {
-        return Number == ReverseNumber(Number);
+        short Sum = 0;
+        for (short i = 0; i < Text.size(); i++)
+        {
+            if (IsNumberInRange(GetASCII(Text[i]), '0', '9'))
+                Sum += GetASCII(Text[i]);
+        }
+        return Sum;
     }
 
     static int RandomNumber(int From, int To)
@@ -336,27 +329,27 @@ public:
 
     // Boolean Algorithms
 	
-	static char AskToPerformOperation(string Message)
+    static char AskToPerformOperation(string Message)
     {
         char Perform;
         cout << Message;
         cin >> Perform;
         return Perform;
     }
-	
+
     static bool AreLettersEqual(char Letter1, char Letter2)
     {
         return GetASCII(Letter1) == GetASCII(Letter2);
     }
-	
-    static bool CharToBoolean(char UserAnswer, char WhatToExpect, char AnotherExpectation = ' ')
+
+    static bool CharToBoolean(char UserAnswer, char ExpectedAnswer, char AnotherAnswer = ' ')
     {
-        return AreLettersEqual(UserAnswer, WhatToExpect) || AreLettersEqual(UserAnswer, AnotherExpectation);
+        return AreLettersEqual(UserAnswer, ExpectedAnswer) || AreLettersEqual(UserAnswer, AnotherAnswer);
     }
 
-    static bool StringToBoolean(string UserAnswer, string WhatToExpect)
+    static bool StringToBoolean(string UserAnswer, string ExpectedAnswer)
     {
-        return UserAnswer == WhatToExpect;
+        return UserAnswer == ExpectedAnswer;
     }
 
     static void Swap(bool& BooleanValue1, bool& BooleanValue2)
@@ -430,10 +423,9 @@ public:
         }
     }
 
-    static int MaxElementInArray(int Array[100], int Length)
+    static int MaxNumber(int Array[100], int Length)
     {
         int MaxNumber = 0;
-
         for (int i = 0; i <= Length - 1; i++)
         {
             if (Array[i] > MaxNumber)
@@ -444,11 +436,9 @@ public:
         return MaxNumber;
     }
 
-    static int MinNumberInArray(int Array[100], int Length)
+    static int MinNumber(int Array[100], int Length)
     {
-        int Min = 0;
-        Min = Array[0];
-
+        int Min = Array[0];
         for (int i = 0; i <= Length - 1; i++)
         {
             if (Array[i] < Min)
@@ -521,91 +511,91 @@ public:
             */
         }
     }
-	
-	static short FindFirstPositionInArray(int Array[100], int Length, int NumberToSearch)
-{
-    for (int i = 0; i <= Length - 1; i++)
-    {
-        if (Array[i] == NumberToSearch)
-            return i;
-    }
-    return -1;
-}
 
-static short FindFirstPositionInArray(double Array[100], int Length, double NumberToSearch)
-{
-    for (int i = 0; i <= Length - 1; i++)
+    static short NumberIndex(int Array[100], int Length, int NumberToSearch)
     {
-        if (Array[i] == NumberToSearch)
-            return i;
+        for (int i = 0; i <= Length - 1; i++)
+        {
+            if (Array[i] == NumberToSearch)
+                return i;
+        }
+        return -1;
     }
-    return -1;
-}
 
-static short FindFirstPositionInArray(string Array[100], int Length, string WordToSearch)
-{
-    for (int i = 0; i <= Length - 1; i++)
+    static short NumberIndex(double Array[100], int Length, double NumberToSearch)
     {
-        if (Array[i] == WordToSearch)
-            return i;
+        for (int i = 0; i <= Length - 1; i++)
+        {
+            if (Array[i] == NumberToSearch)
+                return i;
+        }
+        return -1;
     }
-    return -1;
-}
 
-static short FindFirstPositionInArray(char Array[100], int Length, char LetterToSearch)
-{
-    for (int i = 0; i <= Length - 1; i++)
+    static short WordIndex(string Array[100], int Length, string WordToSearch)
     {
-        if (Array[i] == LetterToSearch)
-            return i;
+        for (int i = 0; i <= Length - 1; i++)
+        {
+            if (Array[i] == WordToSearch)
+                return i;
+        }
+        return -1;
     }
-    return -1;
-}
 
-static bool IsNumberInArray(int Array[100], int Length, int NumberToSearch)
-{
-    return FindFirstPositionInArray(Array, Length, NumberToSearch) != -1;
-}
-
-static short FindLastPositionInArray(int Array[100], int Length, int NumberToSearch)
-{
-    for (short i = Length - 1; i >= 0; i--)
+    static short LetterIndex(char Array[100], int Length, char LetterToSearch)
     {
-        if (Array[i] == NumberToSearch)
-            return i;
+        for (int i = 0; i <= Length - 1; i++)
+        {
+            if (Array[i] == LetterToSearch)
+                return i;
+        }
+        return -1;
     }
-    return -1;
-}
 
-static short FindLastPositionInArray(double Array[100], int Length, double NumberToSearch)
-{
-    for (short i = Length - 1; i >= 0; i--)
+    static bool IsNumberExist(int Array[100], int Length, int NumberToSearch)
     {
-        if (Array[i] == NumberToSearch)
-            return i;
+        return NumberIndex(Array, Length, NumberToSearch) != -1;
     }
-    return -1;
-}
 
-static short FindLastPositionInArray(string Array[100], int Length, string WordToSearch)
-{
-    for (short i = Length - 1; i >= 0; i--)
+    static short FindLastIndex(int Array[100], int Length, int NumberToSearch)
     {
-        if (Array[i] == WordToSearch)
-            return i;
+        for (short i = Length - 1; i >= 0; i--)
+        {
+            if (Array[i] == NumberToSearch)
+                return i;
+        }
+        return -1;
     }
-    return -1;
-}
 
-static short FindLastPositionInArray(char Array[100], int Length, char LetterToSearch)
-{
-    for (short i = Length - 1; i >= 0; i--)
+    static short FindLastIndex(double Array[100], int Length, double NumberToSearch)
     {
-        if (Array[i] == LetterToSearch)
-            return i;
+        for (short i = Length - 1; i >= 0; i--)
+        {
+            if (Array[i] == NumberToSearch)
+                return i;
+        }
+        return -1;
     }
-    return -1;
-}
+
+    static short FindLastIndex(string Array[100], int Length, string WordToSearch)
+    {
+        for (short i = Length - 1; i >= 0; i--)
+        {
+            if (Array[i] == WordToSearch)
+                return i;
+        }
+        return -1;
+    }
+
+    static short FindLastIndex(char Array[100], int Length, char LetterToSearch)
+    {
+        for (short i = Length - 1; i >= 0; i--)
+        {
+            if (Array[i] == LetterToSearch)
+                return i;
+        }
+        return -1;
+    }
 
     static void AddElementToArray(int Number, int Array[], int& ArrayLength)
     {
@@ -821,7 +811,7 @@ static short FindLastPositionInArray(char Array[100], int Length, char LetterToS
 
     static void GetTransposedMatrix(short TransposedMatrix[3][3], short OriginalMatrix[3][3], short Rows, short Columns)
     {
-        // Note: in this algorithm, the number of row is changed each time, but the number of column is fixed.
+        // Note: row's value is changed, but column's value is fixed.
         for (short i = 0; i < Rows; i++)
         {
             for (short j = 0; j < Columns; j++)
@@ -979,12 +969,11 @@ static short FindLastPositionInArray(char Array[100], int Length, char LetterToS
     static short CountIntegers(short Matrix[3][3], short Rows, short Columns)
     {
         short IntegersCounter = 0;
-
         for (short i = 0; i < Rows; i++)
         {
             for (short j = 0; j < Columns; j++)
             {
-                if (Matrix[i][j] < 0 || Matrix[i][j] > 0)
+                if (IsPositiveNumber(Matrix[i][j]) || IsNegativeNumber(Matrix[i][j]))
                     IntegersCounter++;
             }
         }
@@ -997,34 +986,21 @@ static short FindLastPositionInArray(char Array[100], int Length, char LetterToS
         return (CountRepeatedTimes(Matrix, 3, 3, 0) >= ceil(MatrixSize / 2));
     }
 
-    static bool IsElementInMatrix(short Matrix[3][3], short Rows, short Columns, short NumberToSearch)
-    {
-        for (short i = 0; i < Rows; i++)
-        {
-            for (short j = 0; j < Columns; j++)
-            {
-                if (Matrix[i][j] == NumberToSearch)
-                    return true;
-            }
-        }
-        return false;
-    }
-
     static void PrintIntersectedNumbers(short Matrix1[3][3], short Matrix2[3][3], short Rows, short Columns)
     {
         for (short i = 0; i < Rows; i++)
         {
             for (short j = 0; j < Columns; j++)
             {
-                if (IsElementInMatrix(Matrix2, Rows, Columns, Matrix1[i][j]))
+                if (IsNumberExist(Matrix2, Rows, Columns, Matrix1[i][j]))
                     cout << setw(3) << Matrix1[i][j] << "     ";
             }
         }
     }
 
-    static short MaxElementInMatrix(short Matrix[3][3], short Rows, short Columns)
+    static short MaxNumber(short Matrix[3][3], short Rows, short Columns)
     {
-        short Max = Matrix[0][0]; // assume that the first element is the maximum
+        short Max = 0;
         for (short i = 0; i < Rows; i++)
         {
             for (short j = 0; j < Columns; j++)
@@ -1038,7 +1014,7 @@ static short FindLastPositionInArray(char Array[100], int Length, char LetterToS
         return Max;
     }
 
-    static short MinElementInMatrix(short Matrix[3][3], short Rows, short Columns)
+    static short MinNumber(short Matrix[3][3], short Rows, short Columns)
     {
         short Min = Matrix[0][0]; // assume that the first element is the minimum
         for (short i = 0; i < Rows; i++)
@@ -1052,6 +1028,24 @@ static short FindLastPositionInArray(char Array[100], int Length, char LetterToS
             }
         }
         return Min;
+    }
+
+    static short NumberIndex(short Matrix[3][3], short Rows, short Columns, short NumberToSearch)
+    {
+        for (short i = 0; i < Rows; i++)
+        {
+            for (short j = 0; j < Columns; j++)
+            {
+                if (Matrix[i][j] == NumberToSearch)
+                    return i;
+            }
+        }
+        return -1;
+    }
+
+    static bool IsNumberExist(short Matrix[3][3], short Rows, short Columns, short NumberToSearch)
+    {
+        return NumberIndex(Matrix, Rows, Columns, NumberToSearch) != -1;
     }
 
     static bool IsPalindromeMatrix(short Matrix[3][3], short Rows, short Columns)
@@ -1143,11 +1137,6 @@ static short FindLastPositionInArray(char Array[100], int Length, char LetterToS
 
     static char GetRandomCharacter(enCharType Char)
     {
-        /*
-        if (Char == enCharType::MixLetters)
-        CharType = (enCharType)RandomNumber(1, 3);
-        */
-
         switch (Char)
         {
         case enCharType::Small_Letter:
@@ -1355,8 +1344,52 @@ static short FindLastPositionInArray(char Array[100], int Length, char LetterToS
         }
     }
 
-    // File Handling Algorithms
+    static string NumberToText(int Number)
+    {
+        if (Number == 0)
+            return "";
 
+        if (Number >= 1 && Number <= 19)
+        {
+            string arr[] = { "", "One","Two","Three","Four","Five","Six","Seven",
+           "Eight","Nine","Ten","Eleven","Twelve","Thirteen","Fourteen",
+            "Fifteen","Sixteen","Seventeen","Eighteen","Nineteen" };
+            return  arr[Number] + " ";
+        }
+
+        if (Number >= 20 && Number <= 99)
+        {
+            string arr[] = { "","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety" };
+            return  arr[Number / 10] + " " + NumberToText(Number % 10);
+        }
+
+        if (Number >= 100 && Number <= 199)
+            return  "One Hundred " + NumberToText(Number % 100);
+
+        if (Number >= 200 && Number <= 999)
+            return   NumberToText(Number / 100) + "Hundreds " + NumberToText(Number % 100);
+
+        if (Number >= 1000 && Number <= 1999)
+            return  "One Thousand " + NumberToText(Number % 1000);
+
+        if (Number >= 2000 && Number <= 999999)
+            return   NumberToText(Number / 1000) + "Thousands " + NumberToText(Number % 1000);
+
+        if (Number >= 1000000 && Number <= 1999999)
+            return  "One Million " + NumberToText(Number % 1000000);
+
+        if (Number >= 2000000 && Number <= 999999999)
+            return   NumberToText(Number / 1000000) + "Millions " + NumberToText(Number % 1000000);
+
+        if (Number >= 1000000000 && Number <= 1999999999)
+            return  "One Billion " + NumberToText(Number % 1000000000);
+
+        else
+            return   NumberToText(Number / 1000000000) + "Billions " + NumberToText(Number % 1000000000);
+    }
+
+    // File Handling Algorithms
+	
     static void AddDataLineToFile(string FileName, string DataLine)
     {
         fstream File;
@@ -1402,5 +1435,64 @@ static short FindLastPositionInArray(char Array[100], int Length, char LetterToS
             File.close();
         }
         return vFile;
+    }
+
+    // Vector Algorithms
+
+    static bool IsBiggestNumber(vector <int>& vNumbers, int NumberToCheck, short StartFrom = 0)
+    {
+        for (short i = StartFrom; i < vNumbers.size(); i++)
+        {
+            if (vNumbers[i] > NumberToCheck)
+                return false;
+        }
+        return true;
+    }
+
+    static bool IsSmallestNumber(vector <int>& vNumbers, int NumberToCheck, short StartFrom = 0)
+    {
+        for (short i = StartFrom; i < vNumbers.size(); i++)
+        {
+            if (vNumbers[i] < NumberToCheck)  
+                return false;
+        }
+        return true;
+    }
+
+    static int MaxNumber(vector <int>& vNumbers)
+    {
+        int MaxNumber = 0;
+        for (int& Number : vNumbers)
+        {
+            if (Number > MaxNumber)
+                MaxNumber = Number;
+        }
+        return MaxNumber;
+    }
+
+    static int MinNumber(vector <int>& vNumbers)
+    {
+        int MinNumber = vNumbers[0];
+        for (int& Number : vNumbers)
+        {
+            if (Number < MinNumber)
+                MinNumber = Number;
+        }
+        return MinNumber;
+    }
+
+    static short NumberIndex(vector <int>& vNumbers, int NumberToSearch)
+    {
+        for (short i = 0; i < vNumbers.size(); i++)
+        {
+            if (vNumbers[i] == NumberToSearch)
+                return i;
+        }
+        return -1;
+    }
+
+    static bool IsNumberExist(vector <int>& vNumbers, int NumberToSearch)
+    {
+        return NumberIndex(vNumbers, NumberToSearch) != -1;
     }
 };
